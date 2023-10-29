@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jelszó</title>
+    <style>
+        body {
+            background-color: aqua;
+            padding: 30px;
+        }
+    </style>
+    <script>
+        function jelszoEllenorzes() {
+            var jelszo = document.getElementById("jelszoDoboz");
+            var beirtJelszo = jelszo.value;
+            if (beirtJelszo == "nem a tied") {
+                return true;
+            }
+            alert("Hozzáférés megtagadva! Helytelen jelszó!");
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <p style="font-size: 30pt;">Bejelentkezés</p>
+    <p>A weblap eléréséhez add meg a jelszót!</p>
+    <p> Jelszó:<input id="jelszoDoboz" type="password" /></p>
+    <a href="kezdolap.html" onclick="return jelszoEllenorzes();">
+        A jelszó elküldéséhez és a wblap felkereséséhez kattints ide
+    </a>
+</body>
+
+</html>
