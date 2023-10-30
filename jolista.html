@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tennivalók listája</title>
+        <style>
+            body {
+                background-color: coral;
+                padding: 30px;
+            }
+        </style>
+        <script>
+            function tennivaloBeiras(){
+                var ujElem = document.createElement("div");
+                ujElem.innerHTML = document.getElementById("doboz").value;
+                ujElem.style = "background-color: gold"
+                ujElem.onclick = elemTorles;
+                document.getElementById("lista").appendChild(ujElem);
+                listaMentes();
+            }
+            function elemTorles() {
+                document.getElementById("lista").removeChild(this);
+                listaMentes();
+            }
+            function listaMentes() {
+                localStorage.taroltLista = document.getElementById("lista").innerHTML;
+            }
+            function listaBetoltes() {
+                document.getElementById("lista").innerHTML = localStorage.taroltLista;
+                for(var i = 0; i <lista.children.length; i++) {
+                    lista.children[i].onclick = elemTorles;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div style="background-color: brown; text-align: center;">
+        <p style="font-size: xx-large;">Tennivalók listája</p>
+        </div>
+             <a href="kezdolap.html" font-size:x-large>Vissza a kezdőképernyőre</a>
+            <br/> <br> 
+            <p style="font-size: x-large;">A kész tehendőre kattintva törölheti!</p>
+            <input type="text" id="doboz" value="Tennivaló beírása"/>
+            <br/>
+            <input type="button" value="Hozzáadás a listához"
+                onclick="tennivaloBeiras();"/>
+            <br/>
+            <div id="lista"></div>
+            <script>
+                if(localStorage.taroltLista) {
+                    listaBetoltes();
+                }
+            </script>
+    </body>
+</html>
