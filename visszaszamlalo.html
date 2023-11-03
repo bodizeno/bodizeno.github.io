@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visszaszámláló</title>
+</head>
+<body>
+    <h1>Visszaszámláló</h1>
+    <a href="kezdolap.html">Vissza a kezdőképernyőre</a>
+    <div id="countdown"></div>
+    <input type="number" id="initialValue" placeholder="Kezdeti érték">
+    <button onclick="startCountdown()">Indítás</button>
+    <button onclick="stopCountdown()">Leállítás</button>
+
+    <script>
+        let countdownInterval;
+        let currentValue = 0;
+
+        const countdownElement = document.getElementById('countdown');
+        const initialValueInput = document.getElementById('initialValue');
+
+        function startCountdown() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            currentValue = parseInt(initialValueInput.value) || 0;
+
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        function stopCountdown() {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+
+        function updateCountdown() {
+            if (currentValue <= 0) {
+                stopCountdown();
+                countdownElement.textContent = 'Lejárt!';
+            } else {
+                countdownElement.textContent = currentValue;
+                currentValue--;
+            }
+        }
+    </script>
+     <div>
+    <img src="kepek/karacsony.jpeg">
+    </div>
+</body>
+</html>
