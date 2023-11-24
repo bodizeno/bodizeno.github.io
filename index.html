@@ -14,7 +14,7 @@
         function jelszoEllenorzes() {
             var jelszo = document.getElementById("jelszoDoboz");
             var beirtJelszo = jelszo.value;
-            if (beirtJelszo == "paci") {
+            if (beirtJelszo == "") {
                 return true;
             }
             alert("Hozzáférés megtagadva! Helytelen jelszó!");
@@ -25,7 +25,7 @@
 
 <body>
     <p style="font-size: 30pt;">Bejelentkezés</p>
-    <p>A weblap eléréséhez add meg a jelszót!<br> (jelszó: paci)</p>
+    <p>A weblap eléréséhez add meg a jelszót!<br> Nem kell beirni semmit!</p>
     <p> Jelszó:<input id="jelszoDoboz" type="password" /></p>
     <a href="kezdolap.html" onclick="return jelszoEllenorzes();">
         A jelszó elküldéséhez és a wblap felkereséséhez kattints ide!
