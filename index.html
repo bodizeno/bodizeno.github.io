@@ -12,23 +12,23 @@
     </style>
     <script>
         function jelszoEllenorzes() {
-            var jelszo = document.getElementById("jelszoDoboz");
-            var beirtJelszo = jelszo.value;
-            if (beirtJelszo == "1331") {
-                return true;
-            }
-            alert("Hozzáférés megtagadva! Helytelen jelszó!");
-            return false;
+
+var password = prompt("Írd be a jelszót:");
+if (password === "1331") {
+    window.location.href = "kezdolap.html";
+} else if (password === "fbi") {
+    window.location.href = "fbi_kezdolap.html";
+} else {
+    alert("Hozzáférés megtagadva! Helytelen jelszó");
+}
         }
     </script>
 </head>
 
 <body>
     <p style="font-size: 30pt;">Bejelentkezés</p>
-    <p>A weblap eléréséhez add meg a jelszót!</p>
-    <p> Jelszó:<input id="jelszoDoboz" type="password" /></p>
-    <a href="kezdolap.html" onclick="return jelszoEllenorzes();">
-        A jelszó elküldéséhez és a weblap felkereséséhez kattints ide!
+    <a href="#" onclick="return jelszoEllenorzes();">
+        A jelszó beírásához kattints ide!
     </a>
 </body>
 
