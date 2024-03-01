@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magyarország quiz</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#quiz-container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.correct {
+  background-color: #4CAF50 !important;
+}
+
+.wrong {
+  background-color: #f44336 !important;
+}
+
+.answered {
+  pointer-events: none;
+}
+</style>
+</head>
+<body style="background-color: yellow;">
+
+<div id="quiz-container">
+  <h2>Magyarország quiz</h2>
+  <div id="question-container">
+    <p id="question">Kérdés jelenik meg itt</p>
+    <div id="answer-buttons" class="btn-grid">
+      <!-- Válasz gombok -->
+    </div>
+  </div>
+  <button id="next-button" class="btn" style="display:none;">Következő</button>
+  <div id="result"></div>
+  <div id="score"></div> <!-- Itt jön az új rész a kódban -->
+</div>
+
+<script>
+const questions = [
+  {
+    question: "Mi a fővárosa Magyarországnak?",
+    answers: [
+      { text: "Budapest", correct: true },
+      { text: "Debrecen", correct: false },
+      { text: "Szeged", correct: false },
+      { text: "Pécs", correct: false }
+    ]
+  },
+  {
+    question: "Mi volt Petőfi Sándor első verse?",
+    answers: [
+      { text: "Egy estém otthon", correct: false },
+      { text: "A borozó", correct: true },
+      { text: "Anyám tyúkja", correct: false },
+      { text: "Hazámban", correct: false }
+    ]
+  },
+  {
+    question: "Mettől meddig tartott az első világháború?",
+    answers: [
+      { text: "1914-1918 ", correct: true },
+      { text: "1924-2023", correct: false },
+      { text: "1924-1917", correct: false },
+      { text: "1876-1880", correct: false }
+    ]
+  },
+  {
+    question: "Mikor született Csukás István",
+    answers: [
+      { text: "1936. április 2.", correct: true },
+      { text: "1936. április 1.", correct: false },
+      { text: "1937. január 2.", correct: false },
+      { text: "1936. április 3.", correct: false }
+    ]
+  },
+  {
+    question: " Magyarországon van az első hivatalos... ",
+    answers: [
+      { text: "sonka gyártó cég", correct: false },
+      { text: "vécé márka", correct: false },
+      { text: "borvidék", correct: true },
+      { text: "Tesla truck", correct: false }
+    ]
+  },
+  {
+    question: " Magyarországon található európa első... ",
+    answers: [
+      { text: "rubikkocka gyárja", correct: false },
+      { text: "CBA-ja", correct: false },
+      { text: "libegője", correct: false },
+      { text: "metrója", correct: true }
+    ]
+  },
+  // További kérdések...
+];
+
+const questionContainer = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-button');
+const result = document.getElementById('result');
+const scoreDisplay = document.getElementById('score');
+
+let currentQuestionIndex = 0;
+let score = 0;
+let answered = false;
+
+startQuiz();
+
+function startQuiz() {
+  showQuestion(questions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+  questionElement.innerText = question.question;
+  resetAnswerButtons();
+  question.answers.forEach(answer => {
+    const button = document.createElement('button');
+    button.innerText = answer.text;
+    button.classList.add('btn');
+    button.addEventListener('click', () => selectAnswer(answer.correct, button));
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+function resetAnswerButtons() {
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
+function selectAnswer(correct, button) {
+  if (!answered) {
+    if (correct) {
+      result.innerText = 'Helyes válasz!';
+      button.classList.add('correct');
+      score++;
+    } else {
+      result.innerText = 'Rossz válasz!';
+      button.classList.add('wrong');
+    }
+    button.classList.add('answered');
+    answered = true;
+    nextButton.style.display = 'block';
+  }
+}
+
+function disableAnswerButtons() {
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => {
+    button.classList.add('answered');
+    button.disabled = true;
+  });
+}
+
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion(questions[currentQuestionIndex]);
+    nextButton.style.display = 'none';
+    result.innerText = '';
+    answered = false;
+  } else {
+    questionContainer.innerHTML = '';
+    scoreDisplay.innerText = `Eredmény: ${score}/${questions.length}`;
+  }
+});
+</script>
+<a href="quizek.html">Vissza a quizek hez</a>
+</body>
+</html>
+
