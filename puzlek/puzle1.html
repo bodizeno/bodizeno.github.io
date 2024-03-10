@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #puzzle {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: 
+                linear-gradient(0deg, black 1px, transparent 1px),
+                linear-gradient(90deg, black 1px, transparent 1px);
+            background-size: 100px 100px;
+        }
+        .piece {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            position: absolute;
+            background-size: 400px 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="puzzle"></div>
+    <script>
+        var image = '../kepek/karacsony.jpeg'; // Cseréld le a saját képedre
+        var pieces = [];
+        for (var i = 0; i < 12; i++) { // Módosítottam a darabok számát 12-re
+            var piece = document.createElement('div');
+            piece.className = 'piece';
+            piece.style.backgroundImage = 'url(' + image + ')';
+            piece.style.backgroundPosition = -(i % 4 * 100) + 'px ' + -(Math.floor(i / 4) * 100) + 'px';
+            piece.style.top = Math.floor(Math.random() * 300) + 'px';
+            piece.style.left = Math.floor(Math.random() * 300) + 'px';
+            piece.targetPosition = {left: i % 4 * 100, top: Math.floor(i / 4) * 100};
+            piece.addEventListener('mousedown', function(e) {
+                var x = e.clientX - parseInt(this.style.left);
+                var y = e.clientY - parseInt(this.style.top);
+                var move = function(e) {
+                    this.style.left = e.clientX - x + 'px';
+                    this.style.top = e.clientY - y + 'px';
+                }.bind(this);
+                document.addEventListener('mousemove', move);
+                this.addEventListener('mouseup', function() {
+                    document.removeEventListener('mousemove', move);
+                    if (Math.abs(parseInt(this.style.left) - this.targetPosition.left) < 50 &&
+                        Math.abs(parseInt(this.style.top) - this.targetPosition.top) < 50) {
+                        this.style.left = this.targetPosition.left + 'px';
+                        this.style.top = this.targetPosition.top + 'px';
+                    }
+                    checkCompletion();
+                });
+            });
+            pieces.push(piece);
+            document.getElementById('puzzle').appendChild(piece);
+        }
+
+        function checkCompletion() {
+            for (var i = 0; i < pieces.length; i++) {
+                var piece = pieces[i];
+                if (piece.style.left !== piece.targetPosition.left + 'px' ||
+                    piece.style.top !== piece.targetPosition.top + 'px') {
+                    return;
+                }
+            }
+            alert('Gratulálok, sikerült kiraknod a puzzle-t!');
+        }
+    </script>
+    <a href="puzlek.html">Vissza a puzlékhoz</a>
+</body>
+</html>
+
