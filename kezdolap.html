@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <!-- cím -->
     <meta charset="UTF-8">
@@ -18,67 +19,67 @@
     <div style="text-align:right; ">
         <a href="index.html"> Kijelentkezés!</a>
     </div>
-     <div style="font-size: x-large;">
-    <a href="tudnivalók.html" >Fontos információk a honlapról</a>
-    <br> <br> 
-    <a href="keszitok.html" > A készítők megjelenítéséhez kattints ide!</a>
-    <br> <br> 
-    <a href="alkalmi.html" >A weboldalról aktuális információk</a>
-    <br> <br> 
-    <a href="jolista.html"> Magán lista</a>
-    <br><br>
-    <style>
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50; /* Eredeti háttérszín */
-            color: white;
-            border: none;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-            transition: color 0.4s ease;
-        }
+    <div style="font-size: x-large;">
+        <a href="tudnivalók.html">Fontos információk a honlapról</a>
+        <br> <br>
+        <a href="keszitok.html"> A készítők megjelenítéséhez kattints ide!</a>
+        <br> <br>
+        <a href="alkalmi.html">A weboldalról aktuális információk</a>
+        <br> <br>
+        <a href="jolista.html"> Magán lista</a>
+        <br><br>
+        <style>
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: #4CAF50;
+                /* Eredeti háttérszín */
+                color: white;
+                border: none;
+                overflow: hidden;
+                position: relative;
+                z-index: 1;
+                transition: color 0.4s ease;
+            }
 
-        button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, #e2ff40, #f7bb17, #c91e1e);
-            z-index: -1;
-            transition: transform 0.4s ease;
-            transform: scaleX(0);
-            transform-origin: left;
-        }
+            button::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(120deg, #e2ff40, #f7bb17, #c91e1e);
+                z-index: -1;
+                transition: transform 0.4s ease;
+                transform: scaleX(0);
+                transform-origin: left;
+            }
 
-        button:hover::before {
-            transform: scaleX(1);
-        }
+            button:hover::before {
+                transform: scaleX(1);
+            }
 
-        button:hover {
-            color: #000; /* Szöveg szín változtatása, amikor az egérkurzor a gomb fölött van */
-        }
-    </style>
-<body>
-    <button onclick="redirect()">Games</button>
+            button:hover {
+                color: #000;
+                /* Szöveg szín változtatása, amikor az egérkurzor a gomb fölött van */
+            }
+        </style>
+        <button onclick="redirect()">Games</button>
 
-    <script>
-        function redirect() {
-            window.location.href = "jatekok.html"; // Cseréld le a kívánt URL-re
-        }
-    </script>
-    <br> <br> 
-    <a href="visszaszamlalo.html" >Visszaszámláló</a>
-    <br><br>
-    <a href="szamologep.html" >Számológép</a>
-    <br><br>
-    <a href="quizek/quizek.html">Quizek</a>
+        <script>
+            function redirect() {
+                window.location.href = "jatekok.html"; // Cseréld le a kívánt URL-re
+            }
+        </script>
+        <br> <br>
+        <a href="visszaszamlalo.html">Visszaszámláló</a>
+        <br><br>
+        <a href="szamologep.html">Számológép</a>
+        <br><br>
+        <a href="quizek/quizek.html">Quizek</a>
     </div>
-
 </body>
 
 </html>
